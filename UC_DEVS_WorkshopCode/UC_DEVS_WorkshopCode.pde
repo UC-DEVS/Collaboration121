@@ -29,7 +29,7 @@ void setup() {
   //cameraUp();
   //surface.setTitle("Hello World!");
   //surface.setResizable(true);
-  //surface.setLocation(100, 100);
+  //surface.setLocation(100, 100)
   //frameRate(70); // best gusse
   resetRotation();
   strokeWeight(2);
@@ -40,10 +40,13 @@ void setup() {
   //hint(ENABLE_STROKE_PERSPECTIVE);
 }
 
-
 void draw() {
   //scale(1,-1,1);// Y+ is up, Standard Co-Ordinates (Right Handed system)
-  background(0);
+  background(200);
+  
+  fill(0);
+  text("Hello, world!", width *.1f, height /2);
+  
   fill(cubeColor);
   if (!mousePressed) {
     kids=true;
