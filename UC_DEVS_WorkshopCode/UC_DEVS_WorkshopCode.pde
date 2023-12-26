@@ -1,3 +1,5 @@
+float angleCounter = 0;
+//https://github.com/processing/processing-android/issues/729
 final color cubeColor = color(37,152,227);
 final int Vlength = 100;    //length of vectors drawn in debug mode
 final int boxSize = 400; //Size of box
@@ -34,6 +36,8 @@ void setup() {
   resetRotation();
   strokeWeight(2);
   stroke(255);
+  textSize(128);
+
   //noFill();
   //hint(DISABLE_DEPTH_MASK);
   
@@ -42,11 +46,12 @@ void setup() {
 
 void draw() {
   //scale(1,-1,1);// Y+ is up, Standard Co-Ordinates (Right Handed system)
-  background(200);
+  background(0);
   
-  fill(0);
-  text("Hello, world!", width *.1f, height /2);
+  fill(255);
+  //text("Hello, world!", width *.1f, height /2);
   
+  text(str(round(angleCounter/8)), width *.2f, height*.2f);
   fill(cubeColor);
   if (!mousePressed) {
     kids=true;
@@ -114,6 +119,8 @@ void mouseMoved() {
 void spinBox(float H,float V) {// calls spin for using 2 angles
   spin(H,VecH,VecV); //Horosontal spin
   spin(V,VecV,VecH); //Vertical spin
+  angleCounter = angleCounter + abs(H);
+  angleCounter = angleCounter + abs(V);
 }
 
 void spin(float theta, PVector a, PVector b) {
