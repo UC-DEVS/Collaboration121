@@ -6,7 +6,7 @@ final int boxSize = 400; //Size of box
 final int sense = 1000; //mouse sensativity or speed
 final boolean invertMouse = false; //flips up and down
 boolean spin = false;
-boolean debug = false;
+boolean debug = true;
 fpsStuff fpsThing = new fpsStuff(60); // target frame rate
 PVector an = new PVector();
 PVector mv = new PVector();
@@ -37,8 +37,8 @@ void setup() {
   strokeWeight(2);
   stroke(255);
   textSize(128);
-
-  //noFill();
+  
+  noFill();
   //hint(DISABLE_DEPTH_MASK);
   
   //hint(ENABLE_STROKE_PERSPECTIVE);
@@ -47,12 +47,21 @@ void setup() {
 void draw() {
   //scale(1,-1,1);// Y+ is up, Standard Co-Ordinates (Right Handed system)
   background(0);
-  
-  fill(255);
+  if (!debug) {
+    fill(255);
+  } else {
+    noFill();
+  }
+  colorMode(HSB, 360, 100, 100);
   //text("Hello, world!", width *.1f, height /2);
-  
-  text(str(round(angleCounter/8)), width *.2f, height*.2f);
-  fill(cubeColor);
+  textAlign(CENTER);
+  text(str(round(angleCounter/8)), width *.5f, height*.2f);
+  //text(str((angleCounter)), width *.5f, height*.2f);
+  //fill(cubeColor);
+  if (!debug) {
+
+    fill(angleCounter%360,angleCounter,80);
+  }
   if (!mousePressed) {
     kids=true;
     Mom.mult(0.9);
@@ -137,6 +146,10 @@ void resetRotation() {
   rotatMtx.reset();
   VecH.set(1,0,0);
   VecV.set(0,1,0);
+  
+  spinBox(PI/4,-PI/6);
+  //spinBox(0,-sin(PI/4));
+  angleCounter = 0;
 }
 
 
